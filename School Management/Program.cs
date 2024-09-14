@@ -1,39 +1,27 @@
 ﻿using School_Management.BusinessLogic;
 using School_Management.Dto;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace School_Management
 {
     public class Program
     {
-             
+
         static void Main(string[] args)
         {
-            var repository= new TeacherRepository();
-
+            var repository = new TeacherRepository();
 
             ConsoleKey pressedKey;
 
-            do {
+            do
+            {
                 Console.Clear();
-                Console.WriteLine("Choose Your option: ");
-                Console.WriteLine("[1]. Add");
-                Console.WriteLine("[2]. View");
-                Console.WriteLine("[3]. Edit");
-                Console.WriteLine("[4]. Delete");
-
+                DisplayOperations();
                 int operation = integerParse(Console.ReadLine());
 
                 if (operation >= 1 && operation <= 4)
                 {
-
-                    Console.WriteLine("Choose Your option: ");
-                    Console.WriteLine("[1]. Student");
-                    Console.WriteLine("[2]. Teacher");
+                    DiplayMenu();
 
                     int option = integerParse(Console.ReadLine());
 
@@ -50,9 +38,13 @@ namespace School_Management
                             else if (option == 2)
                             {
                                 var teachers = repository.GetAll();
+
+                                Console.WriteLine();
+                                Console.WriteLine("-------------------------------------------------");
+
                                 foreach (var teacher in teachers)
 
-                                    Console.WriteLine(teacher.Id + " " + teacher.Name + " " + teacher.Age + " " + teacher.NumberOfPublications);
+                                    PrintTeacher(teacher);
                             }
                             else Console.WriteLine("Choose Correct Option");
                             break;
@@ -67,36 +59,32 @@ namespace School_Management
                             else if (option == 2) { repository.Add(createTeacher()); }
                             else Console.WriteLine("Choose Correct Option");
                             break;
-
-
-
                         default:
                             Console.WriteLine("Choose Correct Option");
                             break;
                     }
                 }
                 else
-                { 
-                    Console.WriteLine("Please Choose Correct Option, Press Enter to continue "); 
-                
+                {
+                    Console.WriteLine("Please Choose Correct Option, Press Enter to continue ");
+
                 }
 
             } while ((pressedKey = Console.ReadKey().Key) != ConsoleKey.Escape);
 
             int integerParse(string value)
+            {
+                if (int.TryParse(value, out int number))
                 {
-                    if (int.TryParse(value, out int number))
-                    {
-                        return number;
-                    }
-                    else
-                    {
-                        Console.WriteLine($"{value} is not a number");
-
-                        return 0;
-                    }
+                    return number;
                 }
-              
+                else
+                {
+                    Console.WriteLine($"{value} is not a number");
+
+                    return 0;
+                }
+            }
             Teacher createTeacher()
             {
                 Console.WriteLine("Enter Id");
@@ -115,8 +103,29 @@ namespace School_Management
                     NumberOfPublications = numberOfPublications
                 };
             }
+            void DisplayOperations()
+            {
+                Console.WriteLine("Choose Your option [1,2,3,4]: ");
+                Console.WriteLine("[1]. Add");
+                Console.WriteLine("[2]. View");
+                Console.WriteLine("[3]. Edit");
+                Console.WriteLine("[4]. Delete");
+               
+            }
+            void DiplayMenu()
+            {
+                Console.WriteLine("Choose Your option [1,2]: ");
+                Console.WriteLine("[1]. Student");
+                Console.WriteLine("[2]. Teacher");
+            }
 
-           
+            void PrintTeacher(Teacher teacher)
+            {
+                Console.WriteLine("{0}:     {1},        {2 },    {3}", teacher.Id, teacher.Name, teacher.Age, teacher.NumberOfPublications);
+            }
+
+
+
         }
     }
 }

@@ -31,7 +31,10 @@ namespace School_Management.BusinessLogic
 
         bool IRepository<Teacher>.Delete(Teacher entity)
         {
-            throw new NotImplementedException();
+            if (entity == null)
+                return false;
+            _dataStore.Remove(entity);
+            return true;
         }
 
         public List<Teacher> GetAll()
