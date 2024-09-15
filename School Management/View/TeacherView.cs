@@ -12,7 +12,7 @@ namespace School_Management.View
         TeacherRepository _repository = new TeacherRepository();
         public void Printer(Teacher teacher)
         {
-            Console.WriteLine("{0}:     {1},                 {2 },    {3}", teacher.Id, teacher.Name, teacher.Age, teacher.NumberOfPublications);
+            Console.WriteLine("{0}:     {1},   |   {2 },   |   {3}", teacher.Id, teacher.Name, teacher.Age, teacher.NumberOfPublications);
         }
 
         public List<Teacher> GetAllTeachers()
@@ -25,7 +25,7 @@ namespace School_Management.View
 
         public void AddTeacher(Teacher teacher)
         {
-           var addedTeacher=  _repository.Add(teacher);
+            var addedTeacher = _repository.Add(teacher);
 
             if (addedTeacher != null)
             {
@@ -39,13 +39,10 @@ namespace School_Management.View
         }
         public Teacher createTeacher()
         {
+            string name = Helper.RequiredStringField("Name");
+            int age = Helper.RequiredIntergerField("Age");
+            int numberOfPublications = Helper.RequiredIntergerField("No. of Publications");
 
-            Console.Write("\nPlease Enter Name:");
-            string name = Console.ReadLine();
-            Console.Write("\nPlease Enter Age:  ");
-            int age = DatatypeConverter.IntegerParse(Console.ReadLine());
-            Console.Write("\nPlease Enter No. of Publications:  ");
-            int numberOfPublications = DatatypeConverter.IntegerParse(Console.ReadLine());
             return new Teacher()
             {
                 Name = name,
@@ -56,7 +53,7 @@ namespace School_Management.View
 
         public void DeleteTeacher(Teacher teacher)
         {
-           bool isDeleted= _repository.Delete(teacher);
+            bool isDeleted = _repository.Delete(teacher);
             if (isDeleted)
             {
                 Console.WriteLine($"\nSccussfully Deleted {teacher.Name}");
@@ -65,24 +62,26 @@ namespace School_Management.View
 
         public void UpdateTeacher(Teacher teacher)
         {
-          
-            _repository.Update(teacher);    
+
+            _repository.Update(teacher);
         }
 
         public Teacher SelectTeacher(int id)
         {
-           return GetAllTeachers().Where(t => t.Id == id).FirstOrDefault();
+            return GetAllTeachers().Where(t => t.Id == id).FirstOrDefault();
         }
 
         public void TeachersSentToPrinter(List<Teacher> teachers)
         {
 
-            Console.WriteLine("Teachers:");
-            Console.WriteLine("-------------------------------------------------");
+            Console.WriteLine("\nTeachers:");
+            Console.WriteLine("----------------------------------------------\n");
 
             foreach (var teacher in teachers)
                 Printer(teacher);
         }
+
+
 
 
     }

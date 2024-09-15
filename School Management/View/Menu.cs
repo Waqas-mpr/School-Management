@@ -176,14 +176,14 @@ namespace School_Management.View
         }
         void DiplayMenu()
         {
-            Console.WriteLine("Choose Your option [1,2]: ");
+            Console.WriteLine("\nChoose Your option [1,2]: ");
             Console.WriteLine("[1]. Student");
             Console.WriteLine("[2]. Teacher");
         }
 
         void DiplayPropertyMenu(String paramMessage)
         {
-            Console.WriteLine("Choose Your option to Edit [1,2,3]: ");
+            Console.WriteLine("\nChoose Your option to Edit [1,2,3]: ");
             Console.WriteLine("[1]. Name");
             Console.WriteLine("[2]. Age");
             Console.WriteLine($"[3]. {paramMessage}");

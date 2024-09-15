@@ -14,7 +14,7 @@ namespace School_Management.View
         StudentRepository _repository = new StudentRepository();
         public void Printer(Student student)
         {
-            Console.WriteLine("{0}:     {1},                 {2 },    {3}", student.Id, student.Name, student.Age, student.Grade);
+            Console.WriteLine("{0}:     {1},   |   {2 },   |   {3}", student.Id, student.Name, student.Age, student.Grade);
         }
 
         public List<Student> GetAllStudents()
@@ -31,23 +31,22 @@ namespace School_Management.View
 
             if (addedStudent != null)
             {
-                Console.WriteLine("Sccussfully Addded.");
+                Console.WriteLine("\nSccussfully Addded.");
                 Printer(addedStudent);
             }
             else
             {
-                Console.WriteLine("No Record Added.");
+                Console.WriteLine("\nNo Record Added.");
             }
         }
         public Student createStudent()
         {
 
-            Console.WriteLine("Please Enter Name:");
-            string name = Console.ReadLine();
-            Console.WriteLine("Please Enter Age:");
-            int age = DatatypeConverter.IntegerParse(Console.ReadLine());
-            Console.WriteLine("Please Enter Grade");
-            char grade = DatatypeConverter.CharParse(Console.ReadLine());
+
+            string name = Helper.RequiredStringField("Name");
+            int age = Helper.RequiredIntergerField("Age");
+            char grade = Helper.RequiredCharField("Grade [A,B,C,D]");
+
             return new Student()
             {
                 Name = name,
@@ -61,7 +60,7 @@ namespace School_Management.View
             bool isDeleted = _repository.Delete(student);
             if (isDeleted)
             {
-                Console.WriteLine($"Sccussfully Deleted {student.Name}");
+                Console.WriteLine($"\nSccussfully Deleted {student.Name}");
             }
         }
 
@@ -79,8 +78,10 @@ namespace School_Management.View
         public void StudentsSentToPrinter(List<Student> students)
         {
 
-            Console.WriteLine("Students:");
-            Console.WriteLine("-------------------------------------------------");
+            Console.WriteLine("\nStudents:");
+
+           
+            Console.WriteLine("----------------------------------------------\n");
 
             foreach (var student in students)
                 Printer(student);
