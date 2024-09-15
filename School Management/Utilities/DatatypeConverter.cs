@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace School_Management.Helper
+namespace School_Management.Utilities
 {
     internal class DatatypeConverter
     {

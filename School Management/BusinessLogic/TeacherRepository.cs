@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+
 namespace School_Management.BusinessLogic
 {
     internal class TeacherRepository : IRepository<Teacher>
@@ -15,7 +16,7 @@ namespace School_Management.BusinessLogic
 
             if (entity == null)
                 return null;
-            entity.Id = GenerateId();
+            entity.Id = Utilities.Helper.GenerateId();
             _dataStore.Add(entity);
 
             return entity;
@@ -54,9 +55,6 @@ namespace School_Management.BusinessLogic
             return findTeacher;
         }
 
-        private int GenerateId()
-        {
-            return _dataStore.Max(t => t.Id) + 1;
-        }
+       
     }
 }

@@ -50,7 +50,8 @@
     <Compile Include="Dto\Person.cs" />
     <Compile Include="Dto\Student.cs" />
     <Compile Include="Dto\Teacher.cs" />
-    <Compile Include="Helper\DatatypeConverter.cs" />
+    <Compile Include="Utilities\DatatypeConverter.cs" />
+    <Compile Include="Utilities\Helper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\Menu.cs" />
