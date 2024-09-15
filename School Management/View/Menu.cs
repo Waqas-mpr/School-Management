@@ -18,12 +18,14 @@ namespace School_Management.View
             {
                 Console.Clear();
                 DisplayOperations();
+
+                Console.Write("\nEnter:  ");
                 int operation = DatatypeConverter.IntegerParse(Console.ReadLine());
 
                 if (operation >= 1 && operation <= 4)
                 {
                     DiplayMenu();
-
+                    Console.Write("\nEnter:  ");
                     int option = DatatypeConverter.IntegerParse(Console.ReadLine());
 
                     switch (operation)
@@ -40,7 +42,7 @@ namespace School_Management.View
                                 _teacherView.AddTeacher(createTeacher);
 
                             }
-                            else Console.WriteLine("Choose Correct Option");
+                            else Console.WriteLine("\nChoose Correct Option");
                             break;
 
                         case 2:
@@ -49,7 +51,7 @@ namespace School_Management.View
                             {
                                 _teacherView.TeachersSentToPrinter(_teacherView.GetAllTeachers());
                             }
-                            else Console.WriteLine("Choose Correct Option");
+                            else Console.WriteLine("\nChoose Correct Option");
                             break;
                         case 3:
                             if (option == 1) {
@@ -59,25 +61,26 @@ namespace School_Management.View
 
 
                                 DiplayPropertyMenu("Grade");
+                                Console.Write("Enter:  ");
                                 int selectProperty = DatatypeConverter.IntegerParse(Console.ReadLine());
 
 
                                 switch (selectProperty)
                                 {
                                     case 1:
-                                        Console.WriteLine("Please Enter Name:");
+                                        Console.Write("\nPlease Enter Name: ");
                                         string name = Console.ReadLine();
                                         selectedStudent.Name = name;
                                         _studentView.UpdateStudent(selectedStudent);
                                         break;
                                     case 2:
-                                        Console.WriteLine("Please Enter Age:");
+                                        Console.Write("\nPlease Enter Age:  ");
                                         int age = DatatypeConverter.IntegerParse(Console.ReadLine());
                                         selectedStudent.Age = age;
                                         _studentView.UpdateStudent(selectedStudent);
                                         break;
                                     case 3:
-                                        Console.WriteLine("Grade");
+                                        Console.Write("\nGrade:  ");
                                         char grade = DatatypeConverter.CharParse(Console.ReadLine());
                                         selectedStudent.Grade = grade;
                                         _studentView.UpdateStudent(selectedStudent);
@@ -100,32 +103,32 @@ namespace School_Management.View
                                 switch (selectProperty)
                                 {
                                     case 1:
-                                        Console.WriteLine("Please Enter Name:");
+                                        Console.Write("\nPlease Enter Name:  ");
                                         string name = Console.ReadLine();
                                         selectedTeacher.Name = name;
                                         _teacherView.UpdateTeacher(selectedTeacher);
                                         break;
                                     case 2:
-                                        Console.WriteLine("Please Enter Age:");
+                                        Console.Write("\nPlease Enter Age:  ");
                                         int age = DatatypeConverter.IntegerParse(Console.ReadLine());
                                         selectedTeacher.Age = age;
                                         _teacherView.UpdateTeacher(selectedTeacher);
                                         break;
                                     case 3:
-                                        Console.WriteLine("Please Enter No. of Publications");
+                                        Console.Write("\nPlease Enter No. of Publications:  ");
                                         int numberOfPublications = DatatypeConverter.IntegerParse(Console.ReadLine());
                                         selectedTeacher.NumberOfPublications = numberOfPublications;
                                         _teacherView.UpdateTeacher(selectedTeacher);
                                         break;
                                     default:
-                                        Console.WriteLine("Choose Correct Option");
+                                        Console.WriteLine("\nChoose Correct Option");
                                         break;
                                 }
                             }
 
 
 
-                            else Console.WriteLine("Choose Correct Option");
+                            else Console.WriteLine("\nChoose Correct Option");
                             break;
 
                         case 4:
@@ -145,16 +148,16 @@ namespace School_Management.View
                                 if (selectedTeacher != null)
                                     _teacherView.DeleteTeacher(selectedTeacher);
                             }
-                            else Console.WriteLine("Choose Correct Option");
+                            else Console.WriteLine("\nChoose Correct Option");
                             break;
                         default:
-                            Console.WriteLine("Choose Correct Option");
+                            Console.WriteLine("\nChoose Correct Option");
                             break;
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Please Choose Correct Option, Press Enter to continue ");
+                    Console.WriteLine("\nPlease Choose Correct Option, Press Enter to continue ");
 
                 }
 
@@ -190,7 +193,7 @@ namespace School_Management.View
         {
             _teacherView.TeachersSentToPrinter(_teacherView.GetAllTeachers());
             Console.WriteLine();
-            Console.Write($"Choose Id to {operationMessage} Teacher:  ");
+            Console.Write($"\nChoose Id to {operationMessage} Teacher:  ");
             return DatatypeConverter.IntegerParse(Console.ReadLine());
         }
 
@@ -198,7 +201,7 @@ namespace School_Management.View
         {
             _studentView.StudentsSentToPrinter(_studentView.GetAllStudents());
             Console.WriteLine();
-            Console.Write($"Choose Id to {operationMessage} Student:  ");
+            Console.Write($"\nChoose Id to {operationMessage} Student:  ");
             return DatatypeConverter.IntegerParse(Console.ReadLine());
         }
 

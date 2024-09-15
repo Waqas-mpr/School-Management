@@ -79,7 +79,7 @@ namespace School_Management.View
         public void StudentsSentToPrinter(List<Student> students)
         {
 
-            Console.WriteLine();
+            Console.WriteLine("Students:");
             Console.WriteLine("-------------------------------------------------");
 
             foreach (var student in students)

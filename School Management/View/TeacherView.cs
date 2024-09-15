@@ -29,22 +29,22 @@ namespace School_Management.View
 
             if (addedTeacher != null)
             {
-                Console.WriteLine("Sccussfully Addded.");
+                Console.WriteLine("\nSccussfully Addded.");
                 Printer(addedTeacher);
             }
             else
             {
-                Console.WriteLine("No Record Added.");
+                Console.WriteLine("\nNo Record Added.");
             }
         }
         public Teacher createTeacher()
         {
 
-            Console.WriteLine("Please Enter Name:");
+            Console.Write("\nPlease Enter Name:");
             string name = Console.ReadLine();
-            Console.WriteLine("Please Enter Age:");
+            Console.Write("\nPlease Enter Age:  ");
             int age = DatatypeConverter.IntegerParse(Console.ReadLine());
-            Console.WriteLine("Please Enter No. of Publications");
+            Console.Write("\nPlease Enter No. of Publications:  ");
             int numberOfPublications = DatatypeConverter.IntegerParse(Console.ReadLine());
             return new Teacher()
             {
@@ -59,7 +59,7 @@ namespace School_Management.View
            bool isDeleted= _repository.Delete(teacher);
             if (isDeleted)
             {
-                Console.WriteLine($"Sccussfully Deleted {teacher.Name}");
+                Console.WriteLine($"\nSccussfully Deleted {teacher.Name}");
             }
         }
 
@@ -77,7 +77,7 @@ namespace School_Management.View
         public void TeachersSentToPrinter(List<Teacher> teachers)
         {
 
-            Console.WriteLine();
+            Console.WriteLine("Teachers:");
             Console.WriteLine("-------------------------------------------------");
 
             foreach (var teacher in teachers)
