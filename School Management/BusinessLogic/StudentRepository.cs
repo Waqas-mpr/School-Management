@@ -8,7 +8,7 @@ namespace School_Management.BusinessLogic
 {
     internal class StudentRepository : IRepository<Student>
     {
-        private List<Student> _dataStore = DataStore.StudentsData();
+        private static List<Student> _dataStore = DataStore.GetInstance.StudentsData();
         public Student Add(Student entity)
         {
 

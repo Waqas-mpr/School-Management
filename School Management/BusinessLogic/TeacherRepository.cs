@@ -10,7 +10,7 @@ namespace School_Management.BusinessLogic
     internal class TeacherRepository : IRepository<Teacher>
     {
 
-        private List<Teacher> _dataStore = DataStore.TeachersData();
+        private List<Teacher> _dataStore = DataStore.GetInstance.TeachersData();
         public Teacher Add(Teacher entity)
         {
 

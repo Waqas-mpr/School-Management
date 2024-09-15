@@ -1,17 +1,14 @@
 ﻿using School_Management.Database;
 using School_Management.Dto;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace School_Management.Utilities
 {
-    internal class Helper
+    internal static class Helper
     {
-        private static List<Teacher> _teacherDataStore = DataStore.TeachersData();
-        private static List<Student> _studentDataStore = DataStore.StudentsData();
+        private static List<Teacher> _teacherDataStore = DataStore.GetInstance.TeachersData();
+        private static List<Student> _studentDataStore = DataStore.GetInstance.StudentsData();
         public static int GenerateId()
         {
             int maxStudentId = _studentDataStore.Max(s => s.Id);
