@@ -10,13 +10,14 @@ namespace School_Management.View
 {
     internal class Menu
     {
+        TeacherView _teacherView = new TeacherView();
         public void MenuSelector()
         {
-            TeacherView _teacherView = new TeacherView();
 
+            Console.WriteLine("Press Any Key to Start App, Press Esc Key to Exit App. ");
             ConsoleKey pressedKey;
 
-            do
+            while ((pressedKey = Console.ReadKey().Key) != ConsoleKey.Escape)
             {
                 Console.Clear();
                 DisplayOperations();
@@ -52,7 +53,46 @@ namespace School_Management.View
                             break;
                         case 3:
                             if (option == 1) { }
-                            else if (option == 2) { }
+                            else if (option == 2)
+                            {
+
+
+                                int id = ShowTeachersToSelectTeacherId("Edit");
+                                Teacher selectedTeacher = _teacherView.SelectTeacher(id);
+
+
+                                DiplayPropertyMenu();
+                                int selectProperty = DatatypeConverter.integerParse(Console.ReadLine());
+
+
+                                switch (selectProperty)
+                                {
+                                    case 1:
+                                        Console.WriteLine("Please Enter Name:");
+                                        string name = Console.ReadLine();
+                                        selectedTeacher.Name = name;
+                                        _teacherView.UpdateTeacher(selectedTeacher);
+                                        break;
+                                    case 2:
+                                        Console.WriteLine("Please Enter Age:");
+                                        int age = DatatypeConverter.integerParse(Console.ReadLine());
+                                        selectedTeacher.Age = age;
+                                        _teacherView.UpdateTeacher(selectedTeacher);
+                                        break;
+                                    case 3:
+                                        Console.WriteLine("Please Enter No. of Publications");
+                                        int numberOfPublications = DatatypeConverter.integerParse(Console.ReadLine());
+                                        selectedTeacher.NumberOfPublications = numberOfPublications;
+                                        _teacherView.UpdateTeacher(selectedTeacher);
+                                        break;
+                                    default:
+                                        Console.WriteLine("Choose Correct Option");
+                                        break;
+                                }
+                            }
+
+
+
                             else Console.WriteLine("Choose Correct Option");
                             break;
 
@@ -60,9 +100,11 @@ namespace School_Management.View
                             if (option == 1) { }
                             else if (option == 2)
                             {
-                                _teacherView.GetAllTeachers();
-                                Console.WriteLine("Choose Id to Delete Teacher.");
-                                int id = DatatypeConverter.integerParse(Console.ReadLine());
+                                int id = ShowTeachersToSelectTeacherId("Delete");
+                                Teacher selectedTeacher = _teacherView.SelectTeacher(id);
+
+                                if (selectedTeacher != null)
+                                    _teacherView.DeleteTeacher(selectedTeacher);
                             }
                             else Console.WriteLine("Choose Correct Option");
                             break;
@@ -77,7 +119,7 @@ namespace School_Management.View
 
                 }
 
-            } while ((pressedKey = Console.ReadKey().Key) != ConsoleKey.Escape);
+            }
 
         }
 
@@ -95,6 +137,22 @@ namespace School_Management.View
             Console.WriteLine("Choose Your option [1,2]: ");
             Console.WriteLine("[1]. Student");
             Console.WriteLine("[2]. Teacher");
+        }
+
+        void DiplayPropertyMenu()
+        {
+            Console.WriteLine("Choose Your option to Edit [1,2,3]: ");
+            Console.WriteLine("[1]. Name");
+            Console.WriteLine("[2]. Age");
+            Console.WriteLine("[3]. No. of Publications");
+        }
+
+        int ShowTeachersToSelectTeacherId(String operationMessage)
+        {
+            _teacherView.TeachersSentToPrinter(_teacherView.GetAllTeachers());
+            Console.WriteLine();
+            Console.Write($"Choose Id to {operationMessage} Teacher:  ");
+            return DatatypeConverter.integerParse(Console.ReadLine());
         }
 
     }

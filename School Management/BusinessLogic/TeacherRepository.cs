@@ -23,7 +23,7 @@ namespace School_Management.BusinessLogic
 
 
 
-       public bool Delete(Teacher entity)
+        public bool Delete(Teacher entity)
         {
             if (entity == null)
                 return false;
@@ -36,14 +36,22 @@ namespace School_Management.BusinessLogic
             return _dataStore;
         }
 
-       public Teacher GetById(int id)
+        public Teacher GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        Teacher IRepository<Teacher>.Update(Teacher entity)
+        public Teacher Update(Teacher entity)
         {
-            throw new NotImplementedException();
+            if(entity == null)
+                return null;
+            Teacher findTeacher=_dataStore.Where(t=>t.Id==entity.Id).FirstOrDefault();
+
+            findTeacher.Name = entity.Name;
+            findTeacher.Age = entity.Age;
+            findTeacher.NumberOfPublications= entity.NumberOfPublications;
+
+            return findTeacher;
         }
 
         private int GenerateId()

@@ -4,8 +4,6 @@ using School_Management.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace School_Management.View
 {
@@ -56,6 +54,26 @@ namespace School_Management.View
             };
         }
 
+        public void DeleteTeacher(Teacher teacher)
+        {
+           bool isDeleted= _repository.Delete(teacher);
+            if (isDeleted)
+            {
+                Console.WriteLine($"Sccussfully Deleted {teacher.Name}");
+            }
+        }
+
+        public void UpdateTeacher(Teacher teacher)
+        {
+          
+            _repository.Update(teacher);    
+        }
+
+        public Teacher SelectTeacher(int id)
+        {
+           return GetAllTeachers().Where(t => t.Id == id).FirstOrDefault();
+        }
+
         public void TeachersSentToPrinter(List<Teacher> teachers)
         {
 
@@ -65,5 +83,7 @@ namespace School_Management.View
             foreach (var teacher in teachers)
                 Printer(teacher);
         }
+
+
     }
 }
