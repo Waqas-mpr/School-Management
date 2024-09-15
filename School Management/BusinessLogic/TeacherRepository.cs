@@ -15,21 +15,15 @@ namespace School_Management.BusinessLogic
 
             if (entity == null)
                 return null;
-
-
-            //var _isIdAvailable = _dataStore.Where(t => t.Id == entity.Id);
-
-            //if (_isIdAvailable == null)
-                _dataStore.Add(entity);
+            entity.Id = GenerateId();
+            _dataStore.Add(entity);
 
             return entity;
-
-
         }
 
-     
 
-        bool IRepository<Teacher>.Delete(Teacher entity)
+
+       public bool Delete(Teacher entity)
         {
             if (entity == null)
                 return false;
@@ -42,7 +36,7 @@ namespace School_Management.BusinessLogic
             return _dataStore;
         }
 
-        Teacher IRepository<Teacher>.GetById(int id)
+       public Teacher GetById(int id)
         {
             throw new NotImplementedException();
         }
@@ -50,6 +44,11 @@ namespace School_Management.BusinessLogic
         Teacher IRepository<Teacher>.Update(Teacher entity)
         {
             throw new NotImplementedException();
+        }
+
+        private int GenerateId()
+        {
+            return _dataStore.Max(t => t.Id) + 1;
         }
     }
 }
