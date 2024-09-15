@@ -43,9 +43,9 @@ namespace School_Management.View
             Console.WriteLine("Please Enter Name:");
             string name = Console.ReadLine();
             Console.WriteLine("Please Enter Age:");
-            int age = DatatypeConverter.integerParse(Console.ReadLine());
+            int age = DatatypeConverter.IntegerParse(Console.ReadLine());
             Console.WriteLine("Please Enter No. of Publications");
-            int numberOfPublications = DatatypeConverter.integerParse(Console.ReadLine());
+            int numberOfPublications = DatatypeConverter.IntegerParse(Console.ReadLine());
             return new Teacher()
             {
                 Name = name,

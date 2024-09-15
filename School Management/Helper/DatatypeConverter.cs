@@ -8,7 +8,7 @@ namespace School_Management.Helper
 {
     internal class DatatypeConverter
     {
-       public static int integerParse(string value)
+       public static int IntegerParse(string value)
         {
             if (int.TryParse(value, out int number))
             {
@@ -19,6 +19,20 @@ namespace School_Management.Helper
                 Console.WriteLine($"{value} is not a number");
 
                 return 0;
+            }
+        }
+
+        public static char CharParse(string value)
+        {
+            if (char.TryParse(value, out char character))
+            {
+                return character;
+            }
+            else
+            {
+                Console.WriteLine($"{value} is not a character");
+
+                return ' ' ;
             }
         }
     }
